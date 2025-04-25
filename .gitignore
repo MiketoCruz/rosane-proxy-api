@@ -1,0 +1,9 @@
+# Ignora a pasta de dependências do Node.js
+node_modules/
+
+# Opcional: Arquivos de sistema operacional
+.DS_Store
+Thumbs.db
+
+# Opcional: Arquivos de log
+*.log
