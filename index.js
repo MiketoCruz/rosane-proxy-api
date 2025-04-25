@@ -1,17 +1,15 @@
-// index.js - TEMPORARILY SIMPLIFIED FOR DEBUGGING POST ROUTE
+// index.js - SIMPLIFICADO + ROOT HANDLER FOR DEBUGGING
 
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-// --- CONFIGURAÇÕES (Não usadas neste teste, mas úteis para log de inicialização) ---
-const FACEBOOK_PIXEL_ID = process.env.PIXEL_ID;
-const FACEBOOK_ACCESS_TOKEN = process.env.ACCESS_TOKEN;
+const FACEBOOK_PIXEL_ID = process.env.PIXEL_ID; // Keep for startup log
+const FACEBOOK_ACCESS_TOKEN = process.env.ACCESS_TOKEN; // Keep for startup log
 
 // --- Middlewares ---
 app.use(express.json());
 
-// CORS Middleware (mantido com logs de debug)
+// CORS Middleware (com logs de debug)
 app.use((req, res, next) => {
   console.log(`-- CORS Check --`);
   console.log(`> Método Recebido: ${req.method}`);
@@ -29,6 +27,13 @@ app.use((req, res, next) => {
   next();
 });
 
+// --- Rota de Teste Raiz (/) ---
+// Adicionada para testar se o servidor responde a um GET simples
+app.get('/', (req, res) => {
+  console.log(`[${new Date().toLocaleString('pt-BR')}] Requisição GET recebida na raiz (/)`);
+  res.status(200).send('Servidor Proxy está vivo e respondendo!');
+});
+
 // --- Rota Principal da API (/api/conversion) - SUPER SIMPLIFICADA ---
 app.post('/api/conversion', (req, res) => {
   const requestTimestamp = new Date();
@@ -36,18 +41,16 @@ app.post('/api/conversion', (req, res) => {
   // Log *essencial* para ver se a rota foi alcançada
   console.log(`[${requestTimestamp.toLocaleString('pt-BR')}] SIMPLIFICADO: Requisição POST chegou em /api/conversion`);
   console.log('SIMPLIFICADO: Corpo da requisição recebida:', req.body);
-
-  // Apenas envia uma resposta simples de sucesso IMEDIATAMENTE
   res.status(200).json({
     message: 'SIMPLIFICADO: Rota POST /api/conversion alcançada com sucesso!',
-    received_data: req.body // Devolve os dados recebidos para confirmação
+    received_data: req.body
   });
   console.log(`[${requestTimestamp.toLocaleString('pt-BR')}] SIMPLIFICADO: Resposta 200 enviada para o cliente.`);
 });
 
 // --- Iniciar o Servidor ---
 app.listen(PORT, () => {
-  console.log(`Servidor proxy Node.js (DEBUG SIMPLIFICADO) iniciado na porta ${PORT}`);
+  console.log(`Servidor proxy Node.js (DEBUG SIMPLIFICADO + ROOT) iniciado na porta ${PORT}`);
   if (!FACEBOOK_PIXEL_ID || !FACEBOOK_ACCESS_TOKEN) {
      console.warn('ALERTA: PIXEL_ID ou ACCESS_TOKEN podem não ter sido carregados!');
    } else {
