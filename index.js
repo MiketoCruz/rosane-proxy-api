@@ -103,7 +103,7 @@ app.post('/api/conversion', async (req, res) => { // Rota agora é async
         event_source_url: clientData.event_source_url,
         user_data: userData,
       }],
-      // test_event_code: 'TESTXXXXX' // Descomente e adicione seu código de teste se precisar
+      test_event_code: 'TEST92054'
     };
     console.log('Payload final para enviar ao Facebook:', JSON.stringify(facebookPayload, null, 2));
 
