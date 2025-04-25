@@ -87,7 +87,7 @@ app.post('/api/conversion', async (req, res) => { // Rota é async
     };
     console.log('Payload final para enviar ao Facebook:', JSON.stringify(facebookPayload, null, 2));
 
-    const fbApiUrl = `https://graph.facebook.com/<span class="math-inline">\{FACEBOOK\_API\_VERSION\}/</span>{FACEBOOK_PIXEL_ID}/events?access_token=${FACEBOOK_ACCESS_TOKEN}`;
+    const fbApiUrl = `https://graph.facebook.com/${FACEBOOK_API_VERSION}/${FACEBOOK_PIXEL_ID}/events?access_token=${FACEBOOK_ACCESS_TOKEN}`;
     console.log(`Enviando para FB: ${fbApiUrl.replace(FACEBOOK_ACCESS_TOKEN, '*****')}`);
 
     const response = await fetch(fbApiUrl, {
