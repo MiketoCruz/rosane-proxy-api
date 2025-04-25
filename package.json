@@ -1,0 +1,22 @@
+{
+  "name": "rosane-proxy-api",
+  "version": "1.0.0",
+  "description": "Proxy para encaminhar eventos para a API de Conversões do Facebook",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "facebook",
+    "capi",
+    "proxy",
+    "render"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "node-fetch": "^2.7.0"
+  }
+}
